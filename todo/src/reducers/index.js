@@ -17,7 +17,7 @@ function reducer(state = initialState, action) {
             };
             return {
                 ...state,
-                todos: [...state.todo, newTodo]
+                todos: [...state.todos, newTodo]
             };
         default:
             return state;
