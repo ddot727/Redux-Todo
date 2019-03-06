@@ -2,8 +2,8 @@ import { ADD_TODO, TOGGLE_TODO } from '../actions';
 
 const initialState = {
     todos: [
-        { value:'Walk The Dog.', id: 3084837930, completed: false },
-        { value:'Take Out The Trash.', id: 2073308479, completed: false }
+        { value:'Walk The Dog', id: 3084837930, className:'notDone', completed: false },
+        { value:'Take Out The Trash', id: 2073308479, className:'notDone', completed: false }
     ]
 };
 
@@ -13,6 +13,7 @@ function reducer(state = initialState, action) {
             const newTodo = {
                 value: action.payload,
                 id: Date.now(),
+                className: 'notDone',
                 completed: false
             };
             return {
@@ -23,14 +24,20 @@ function reducer(state = initialState, action) {
         case TOGGLE_TODO:
             return {
                 ...state,
-                todos: state.todos.map(todos => {
-                    if (todos.id === action.payload) {
+                todos: state.todos.map(todo=> {
+                    if (todo.id === action.payload && todo.className === 'notDone') {
                         return {
-                            ...todos,
-                            completed: !todos.completed
+                            ...todo,
+                            className: 'done',
+                            completed: !todo.completed
                         }
-                    }
-                    return todos;
+                    } else if (todo.id === action.payload && todo.className === 'done') {
+                        return {
+                            ...todo,
+                            className: 'notDone',
+                            completed: !todo.completed
+                        }
+                    } return todo;
                 })
             }
 
