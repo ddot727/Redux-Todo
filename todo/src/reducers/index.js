@@ -25,16 +25,9 @@ function reducer(state = initialState, action) {
             return {
                 ...state,
                 todos: state.todos.map(todo=> {
-                    if (todo.id === action.payload && todo.className === 'notDone') {
+                    if (todo.id === action.payload) {
                         return {
                             ...todo,
-                            className: 'done',
-                            completed: !todo.completed
-                        }
-                    } else if (todo.id === action.payload && todo.className === 'done') {
-                        return {
-                            ...todo,
-                            className: 'notDone',
                             completed: !todo.completed
                         }
                     } return todo;
