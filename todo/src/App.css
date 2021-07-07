@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+
+}
+
+
+.done {
+  text-decoration: line-through;
+  color: rgb(218, 32, 32);
+}
+
+.notDone, .done, button {
+  cursor: pointer;
+}
